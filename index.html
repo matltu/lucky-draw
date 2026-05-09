@@ -587,17 +587,17 @@
 
 <script>
 // ===== Config =====
-const TOTAL_QUESTIONS = 7; // 每轮回答的题目数量（不超过题库总数）
+const TOTAL_QUESTIONS = 9; // 每轮回答的题目数量（不超过题库总数）
 
 // ===== Questions data =====
 const questions = [
   {
-    q: "微软亚太工会现有几位委员？",
+    q: "微软亚太工会现有几位工会委员？",
     opts: ["7位", "5位", "6位"],
     answer: "5位"
   },
   {
-    q: "以下哪个组合能最完整代表工会最近一年内的节日礼？",
+    q: "以下哪个组合能最完整代表工会最近一年内的节日慰问？",
     opts: ["春节 + 中秋", "五一 + 春节", "春节 + 五一 + 中秋"],
     answer: "春节 + 五一 + 中秋"
   },
@@ -612,7 +612,7 @@ const questions = [
     answer: "matltuop@microsoft.com"
   },
   {
-    q: "Reignite 是活动还是福利？",
+    q: "年度Reignite团队建设是活动还是福利？",
     opts: ["活动", "福利"],
     answer: "活动"
   },
@@ -622,13 +622,13 @@ const questions = [
     answer: "425 人"
   },
   {
-    q: "Fit for Fun Q1 平均达标率？",
+    q: "Fit for Fun 活动在第一季度的平均达标率是多少？",
     opts: ["56%", "78%", "96.2%"],
     answer: "96.2%"
   },
   {
     q: "在工会活动中，哪项活动可以带家属？",
-    opts: ["Reignite", "Fun Day"],
+    opts: ["Reignite", "Fun Day", "Fit for Fun"],
     answer: "Fun Day"
   },
   {
@@ -652,7 +652,7 @@ const questions = [
     answer: "团队活动 "
    },
   {
-    q: "以下哪项活动是工会的长期活动？",
+    q: "以下哪项活动是工会的全年活动？",
     opts: ["Fit for Fun", "Fun Day", "亲子工作室"],
     answer: "Fit for Fun"
    },
@@ -668,7 +668,7 @@ const questions = [
    },
   {
     q: "工会的节日礼为什么不可以发购物卡？",
-    opts: ["容易丢失", "属于“类现金”等明令禁止选项", "福利发放应坚持“实物为主”的原则"],
+    opts: ["容易丢失", "属于“类现金”等明令禁止选项", "发放流程复杂"],
     answer: "属于“类现金”等明令禁止选项"
      },
   {
@@ -677,7 +677,7 @@ const questions = [
     answer: "微软邮箱 + 验证码 "
   },
   {
-    q: "下列哪个目前不可以在微软亚太工会小程序上进行操作？",
+    q: "目前还不支持在微软亚太工会小程序上进行哪项操作？",
     opts: ["提交福利报销申请", "进行运动打卡记录", "领取节日礼"],
     answer: "领取节日礼"
    },
@@ -1026,7 +1026,7 @@ function showCountdown(seconds, onDone) {
     } else {
       readyTxt.querySelector('.circle-countdown-number').textContent = count;
     }
-  }, 1000);
+  }, 666);
 }
 
 function showCompletionPage(correct, total, elapsedSecs, finishTime) {
@@ -1068,9 +1068,6 @@ function showCompletionPage(correct, total, elapsedSecs, finishTime) {
     html += '<div class="stat-item"><div class="stat-value">' + timeStr + '</div><div class="stat-label">用时</div></div>';
     html += '</div>';
     html += '<div class="since-timer" id="sinceTimer">距完成已过：0秒</div>';
-    if (correct > 0) {
-      html += '<div class="claim-hint">请向工会工作人员展示此页面领取奖品</div>';
-    }
     html += '<button class="restart-btn" id="restartBtn">🔄 再次挑战</button>';
   }
   html += '</div>';
