@@ -953,8 +953,9 @@ function checkAnswer(isCorrect, qIdx) {
       // All done — show completion page after a short delay
       var elapsed = Math.round((Date.now() - startTime) / 1000);
       var finishTime = new Date();
+      var quizStartTime = new Date(startTime);
       setTimeout(function() {
-        showCompletionPage(correctCount, Math.min(TOTAL_QUESTIONS, questions.length), elapsed, finishTime);
+        showCompletionPage(correctCount, Math.min(TOTAL_QUESTIONS, questions.length), elapsed, finishTime, quizStartTime);
       }, 1200);
     } else {
       // Show countdown then next question
@@ -976,8 +977,9 @@ function checkAnswer(isCorrect, qIdx) {
     // Show fail results page after a short delay
     var elapsed = Math.round((Date.now() - startTime) / 1000);
     var finishTime = new Date();
+    var quizStartTime = new Date(startTime);
     setTimeout(function() {
-      showCompletionPage(correctCount, Math.min(TOTAL_QUESTIONS, questions.length), elapsed, finishTime);
+      showCompletionPage(correctCount, Math.min(TOTAL_QUESTIONS, questions.length), elapsed, finishTime, quizStartTime);
     }, 1200);
   }
 }
@@ -1029,7 +1031,7 @@ function showCountdown(seconds, onDone) {
   }, 666);
 }
 
-function showCompletionPage(correct, total, elapsedSecs, finishTime) {
+function showCompletionPage(correct, total, elapsedSecs, finishTime, quizStartTime) {
   // Hide normal quiz UI
   qContent.style.display = 'none';
   readyTxt.style.display = 'none';
@@ -1046,6 +1048,14 @@ function showCompletionPage(correct, total, elapsedSecs, finishTime) {
   var timeStr = mins > 0 ? (mins + '分' + secs + '秒') : (secs + '秒');
   var isPerfect = correct === total;
 
+  // Format start time
+  var startTimeStr = quizStartTime.getFullYear() + '-'
+    + String(quizStartTime.getMonth() + 1).padStart(2, '0') + '-'
+    + String(quizStartTime.getDate()).padStart(2, '0') + ' '
+    + String(quizStartTime.getHours()).padStart(2, '0') + ':'
+    + String(quizStartTime.getMinutes()).padStart(2, '0') + ':'
+    + String(quizStartTime.getSeconds()).padStart(2, '0');
+
   // Create completion page inside qContent
   var html = '<div class="completion-page">';
   if (isPerfect) {
@@ -1056,6 +1066,7 @@ function showCompletionPage(correct, total, elapsedSecs, finishTime) {
     html += '<div class="stat-row">';
     html += '<div class="stat-item"><div class="stat-value perfect">' + timeStr + '</div><div class="stat-label">通关用时</div></div>';
     html += '</div>';
+    html += '<div class="finish-time">答题开始时间：' + startTimeStr + '</div>';
     html += '<div class="since-timer" id="sinceTimer">距完成已过：0秒</div>';
     html += '<div class="claim-hint">请向工会工作人员展示此页面领取奖品</div>';
   } else {
