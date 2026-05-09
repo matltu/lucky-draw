@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>微软亚太工会 - Teams Fair随机抽题</title>
+<title>微软亚太工会 - Teams Fair 微软亚太工会趣味问答挑战</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -266,6 +266,161 @@
     transform: translateY(-1px);
   }
 
+  /* ---- countdown timer ---- */
+  .circle-countdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .circle-countdown-ring {
+    position: relative;
+    width: 140px;
+    height: 140px;
+  }
+  .circle-countdown-ring svg {
+    transform: rotate(-90deg);
+    width: 140px;
+    height: 140px;
+  }
+  .circle-countdown-ring .ring-bg {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 8;
+  }
+  .circle-countdown-ring .ring-fg {
+    fill: none;
+    stroke: url(#circleGrad);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 408;
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+  .circle-countdown-ring .ring-fg.animate {
+    animation: circleCountdown 3s linear forwards;
+  }
+  @keyframes circleCountdown {
+    from { stroke-dashoffset: 0; }
+    to   { stroke-dashoffset: 408; }
+  }
+  .circle-countdown-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #0078d4, #50e6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+  .countdown-sub {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    color: #888;
+    margin-top: 4px;
+    letter-spacing: 2px;
+  }
+  .ready-go-text {
+    font-size: clamp(3rem, 12vw, 6rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #f39c12, #e74c3c, #ff6f61);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: readyGoPop 0.5s ease-out;
+    text-align: center;
+    line-height: 1.2;
+  }
+  @keyframes readyGoPop {
+    0% { transform: scale(0.3); opacity: 0; }
+    60% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  /* ---- completion page ---- */
+  .completion-page {
+    text-align: center;
+    padding: 10px 0;
+  }
+  .completion-page .trophy {
+    font-size: clamp(3rem, 12vw, 5rem);
+    margin-bottom: 12px;
+  }
+  .completion-page .result-title {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    font-weight: 800;
+    background: linear-gradient(90deg, #0078d4, #50e6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .completion-page .result-subtitle {
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+    font-weight: 700;
+    color: #f39c12;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+  }
+  .completion-page .stat-row {
+    display: flex;
+    justify-content: center;
+    gap: clamp(16px, 5vw, 40px);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .completion-page .stat-item {
+    text-align: center;
+  }
+  .completion-page .stat-value {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    font-weight: 900;
+    color: #0078d4;
+    line-height: 1.2;
+  }
+  .completion-page .stat-value.perfect {
+    color: #2ecc71;
+  }
+  .completion-page .stat-label {
+    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    color: #888;
+    margin-top: 4px;
+  }
+  .completion-page .finish-time {
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    color: #555;
+    margin-bottom: 8px;
+  }
+  .completion-page .since-timer {
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    color: #999;
+    margin-bottom: 12px;
+  }
+  .completion-page .claim-hint {
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    color: #e74c3c;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  .completion-page .restart-btn {
+    display: inline-block;
+    padding: 14px 48px;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: 700;
+    letter-spacing: 4px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(135deg, #0078d4, #50e6ff);
+    box-shadow: 0 6px 24px rgba(0,120,212,.35);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .completion-page .restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(0,120,212,.45);
+  }
+
   /* ---- stars ---- */
   .stars-bar {
     position: relative;
@@ -403,7 +558,7 @@
 <!-- header -->
 <div class="header">
   <h1>🎉 微软亚太工会 🎉</h1>
-  <div class="sub">Teams Fair 随机抽题</div>
+  <div class="sub">Teams Fair 微软亚太工会趣味问答挑战</div>
 </div>
 
 <!-- question card -->
@@ -432,7 +587,7 @@
 
 <script>
 // ===== Config =====
-const TOTAL_QUESTIONS = 9; // 每轮回答的题目数量（不超过题库总数）
+const TOTAL_QUESTIONS = 7; // 每轮回答的题目数量（不超过题库总数）
 
 // ===== Questions data =====
 const questions = [
@@ -442,9 +597,9 @@ const questions = [
     answer: "5位"
   },
   {
-    q: "以下哪个组合能最完整代表工会的节日礼？",
-    opts: ["春节 + 中秋", "端午 + 春节", "春节 + 端午 + 中秋"],
-    answer: "春节 + 端午 + 中秋"
+    q: "以下哪个组合能最完整代表工会最近一年内的节日礼？",
+    opts: ["春节 + 中秋", "五一 + 春节", "春节 + 五一 + 中秋"],
+    answer: "春节 + 五一 + 中秋"
   },
   {
     q: "微软亚太工会 Logo 下方的字是什么？",
@@ -462,7 +617,7 @@ const questions = [
     answer: "活动"
   },
   {
-    q: "Fit for Fun 覆盖人数大约是？",
+    q: "Fit For Fun参与人数大约是？",
     opts: ["120 人", "425 人", "900 人"],
     answer: "425 人"
   },
@@ -477,9 +632,59 @@ const questions = [
     answer: "Fun Day"
   },
   {
-    q: "2026紫竹羽毛球赛到底叫啥？",
+    q: "2026紫竹羽毛球赛到底叫什么？",
     opts: ["紫竹杯", "微软杯", "闵工杯"],
     answer: "微软杯"
+  },
+  {
+    q: "微软亚太工会是什么时候成立的？",
+    opts: ["2015", "2017", "2019"],
+    answer: "2015"
+   },
+  {
+    q: "微软亚太工会报销发票抬头是什么？",
+    opts: ["微软", "微软亚太科技", "微软亚太科技有限公司工会委员会"],
+    answer: "微软亚太科技有限公司工会委员会"
+   },
+  {
+    q: "Fit for Fun中“助力金”合理的用途是？",
+    opts: ["个人提现", "团队活动 ", "工资补贴"],
+    answer: "团队活动 "
+   },
+  {
+    q: "以下哪项活动是工会的长期活动？",
+    opts: ["Fit for Fun", "Fun Day", "亲子工作室"],
+    answer: "Fit for Fun"
+   },
+  {
+    q: "微软亚太工会的小程序叫什么名字？",
+    opts: ["数智工会", "MATLTU", "Matl Trade Union "],
+    answer: "MATLTU"
+   },
+  {
+    q: "微软亚太工会的上级工会是什么？",
+    opts: ["上海紫竹高新技术产业开发区总工会", "上海市总工会", "闵行区总工会 "],
+    answer: "上海紫竹高新技术产业开发区总工会"
+   },
+  {
+    q: "工会的节日礼为什么不可以发购物卡？",
+    opts: ["容易丢失", "属于“类现金”等明令禁止选项", "福利发放应坚持“实物为主”的原则"],
+    answer: "属于“类现金”等明令禁止选项"
+     },
+  {
+    q: "通过什么方式可以登录微软亚太工会微信小程序？",
+    opts: ["手机号登录", "微软邮箱 + 验证码 ", "微信授权登录"],
+    answer: "微软邮箱 + 验证码 "
+  },
+  {
+    q: "下列哪个目前不可以在微软亚太工会小程序上进行操作？",
+    opts: ["提交福利报销申请", "进行运动打卡记录", "领取节日礼"],
+    answer: "领取节日礼"
+   },
+  {
+    q: "微软亚太工会今年是第几次参加 Teams Fair？",
+    opts: ["第一次", "第二次", "第三次"],
+    answer: "第二次"
   }
 ];
 
@@ -500,8 +705,6 @@ let sinceTimerInterval = null;  // interval for "time since completion" display
 
 function clearSinceTimer() {
   if (sinceTimerInterval) { clearInterval(sinceTimerInterval); sinceTimerInterval = null; }
-  var el = document.getElementById('sinceTimer');
-  if (el) el.remove();
 }
 
 function shuffleArray(arr) {
@@ -524,12 +727,12 @@ resetRemaining();
 const card     = document.getElementById('card');
 const qContent = document.getElementById('qContent');
 const readyTxt = document.getElementById('readyText');
-const qNumber  = document.getElementById('qNumber');
-const qText    = document.getElementById('qText');
-const qOptions = document.getElementById('qOptions');
+let qNumber  = document.getElementById('qNumber');
+let qText    = document.getElementById('qText');
+let qOptions = document.getElementById('qOptions');
 const mainBtn  = document.getElementById('mainBtn');
-const answerArea = document.getElementById('answerArea');
-const answerResult = document.getElementById('answerResult');
+let answerArea = document.getElementById('answerArea');
+let answerResult = document.getElementById('answerResult');
 const starsBar = document.getElementById('starsBar');
 
 // Init stars bar
@@ -625,25 +828,64 @@ function toggle() {
   }
 
   if (!running) {
-    // START — ultra fast rolling for 2 seconds, then auto-stop
+    // START — show Ready Go countdown then first question
     running = true;
     if (!startTime) startTime = Date.now();
     card.classList.remove('highlight');
     clearConfetti();
     setMainBtnDisabled(true);
+    qContent.style.display = 'none';
+    readyTxt.style.display = 'block';
 
-    lastTick = 0;
-    rafId = requestAnimationFrame(fastLoop);
+    var steps = ['Ready', 'Go!'];
+    var stepIdx = 0;
+    function showStep() {
+      readyTxt.innerHTML = '<div class="ready-go-text">' + steps[stepIdx] + '</div>';
+      stepIdx++;
+      if (stepIdx < steps.length) {
+        setTimeout(showStep, 800);
+      } else {
+        // After Go!, show circular 3-2-1 countdown
+        setTimeout(function() {
+          var count = 3;
+          var circleHTML = '<div class="circle-countdown">'
+            + '<div class="circle-countdown-ring">'
+            + '<svg viewBox="0 0 140 140">'
+            + '<defs><linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">'
+            + '<stop offset="0%" stop-color="#0078d4"/>'
+            + '<stop offset="100%" stop-color="#50e6ff"/>'
+            + '</linearGradient></defs>'
+            + '<circle class="ring-bg" cx="70" cy="70" r="65"/>'
+            + '<circle class="ring-fg" cx="70" cy="70" r="65"/>'
+            + '</svg>'
+            + '<div class="circle-countdown-number">' + count + '</div>'
+            + '</div>'
+            + '<div class="countdown-sub">即将开始...</div>'
+            + '</div>';
+          readyTxt.innerHTML = circleHTML;
+          requestAnimationFrame(function() {
+            var fg = readyTxt.querySelector('.ring-fg');
+            if (fg) fg.classList.add('animate');
+          });
 
-    setTimeout(function() {
-      if (!running) return;
-      running = false;
-      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-      randomTick();
-      showQuestion(currentQIdx, false);
-      card.classList.add('highlight');
-      showAnswerUI();
-    }, 2000);
+          var interval = setInterval(function() {
+            count--;
+            if (count <= 0) {
+              clearInterval(interval);
+              running = false;
+              readyTxt.style.display = 'none';
+              var pick = remainingQuestions[Math.floor(Math.random() * remainingQuestions.length)];
+              showQuestion(pick, false);
+              card.classList.add('highlight');
+              showAnswerUI();
+            } else {
+              readyTxt.querySelector('.circle-countdown-number').textContent = count;
+            }
+          }, 1000);
+        }, 800);
+      }
+    }
+    showStep();
   }
 }
 
@@ -708,86 +950,184 @@ function checkAnswer(isCorrect, qIdx) {
     }
     launchConfetti();
     if (remainingQuestions.length === 0) {
-      // All done - show time
+      // All done — show completion page after a short delay
       var elapsed = Math.round((Date.now() - startTime) / 1000);
-      var mins = Math.floor(elapsed / 60);
-      var secs = elapsed % 60;
-      var timeStr = mins > 0 ? (mins + '分' + secs + '秒') : (secs + '秒');
-      setMainBtnDisabled(false);
-      mainBtn.textContent = '🎉 完成！';
       var finishTime = new Date();
-      var hhmm = finishTime.toLocaleTimeString('zh-CN', {timeZone: 'Asia/Shanghai', hour12: false, hour: '2-digit', minute: '2-digit'});
-      answerResult.textContent += '  —  所有题目已答完！用时 ' + timeStr + '，答对 ' + correctCount + '/' + Math.min(TOTAL_QUESTIONS, questions.length) + ' 题\n完成时间：' + hhmm;
-      // Append live "time since completion" span
-      var sinceEl = document.createElement('span');
-      sinceEl.id = 'sinceTimer';
-      sinceEl.style.cssText = 'display:block;font-size:0.85em;color:#888;margin-top:4px;';
-      answerResult.appendChild(sinceEl);
-      clearSinceTimer();
-      function updateSince() {
-        var diff = Math.floor((Date.now() - finishTime.getTime()) / 1000);
-        var sm = Math.floor(diff / 60), ss = diff % 60;
-        sinceEl.textContent = '距完成已过：' + (sm > 0 ? sm + '分' : '') + ss + '秒';
-      }
-      updateSince();
-      sinceTimerInterval = setInterval(updateSince, 1000);
+      setTimeout(function() {
+        showCompletionPage(correctCount, Math.min(TOTAL_QUESTIONS, questions.length), elapsed, finishTime);
+      }, 1200);
     } else {
-      var continueBtn = document.createElement('button');
-      continueBtn.className = 'continue-btn';
-      continueBtn.textContent = '继续 ▶';
-      continueBtn.onclick = function() {
-        continueBtn.remove();
+      // Show countdown then next question
+      setTimeout(function() {
         clearConfetti();
         card.classList.remove('highlight');
-        answerArea.style.display = 'none';
-        answerArea.innerHTML = '';
-        answerResult.textContent = '';
-        answerResult.className = 'answer-result';
-        running = true;
-        lastTick = 0;
-        rafId = requestAnimationFrame(fastLoop);
-        setTimeout(function() {
-          running = false;
-          if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-          randomTick();
-          showQuestion(currentQIdx, false);
+        showCountdown(3, function() {
+          var pick = remainingQuestions[Math.floor(Math.random() * remainingQuestions.length)];
+          showQuestion(pick, false);
           card.classList.add('highlight');
           setMainBtnDisabled(true);
           showAnswerUI();
-        }, 2000);
-      };
-      answerResult.appendChild(continueBtn);
+        });
+      }, 1000);
     }
   } else {
     answerResult.textContent = '❌ 回答错误！';
     answerResult.className = 'answer-result wrong';
-    var retryBtn = document.createElement('button');
-    retryBtn.className = 'continue-btn';
-    retryBtn.textContent = '重来 ↺';
-    retryBtn.onclick = function() {
-      retryBtn.remove();
-      clearConfetti();
-      card.classList.remove('highlight');
-      answerArea.style.display = 'none';
-      answerArea.innerHTML = '';
-      answerResult.textContent = '';
-      answerResult.className = 'answer-result';
-      // Full reset
-      clearSinceTimer();
-      resetId++;
-      resetRemaining();
-      correctCount = 0;
-      answeredCount = 0;
-      starsBar.querySelectorAll('.star').forEach(function(s) { s.classList.remove('lit'); });
-      startTime = Date.now();
-      setMainBtnDisabled(false);
-      mainBtn.textContent = '开 始';
-      mainBtn.classList.remove('stop');
-      readyTxt.style.display = 'block';
-      readyTxt.textContent = '重新开始！点击开始抽题 🎯';
-      qContent.style.display = 'none';
-    };
-    answerResult.appendChild(retryBtn);
+    // Show fail results page after a short delay
+    var elapsed = Math.round((Date.now() - startTime) / 1000);
+    var finishTime = new Date();
+    setTimeout(function() {
+      showCompletionPage(correctCount, Math.min(TOTAL_QUESTIONS, questions.length), elapsed, finishTime);
+    }, 1200);
+  }
+}
+
+function showCountdown(seconds, onDone) {
+  // Clear card content and show circular countdown
+  qContent.style.display = 'none';
+  readyTxt.style.display = 'block';
+  answerArea.style.display = 'none';
+  answerArea.innerHTML = '';
+  answerResult.textContent = '';
+  answerResult.className = 'answer-result';
+  setMainBtnDisabled(true);
+
+  var count = seconds;
+  function renderCircle(n) {
+    return '<div class="circle-countdown">'
+      + '<div class="circle-countdown-ring">'
+      + '<svg viewBox="0 0 140 140">'
+      + '<defs><linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">'
+      + '<stop offset="0%" stop-color="#0078d4"/>'
+      + '<stop offset="100%" stop-color="#50e6ff"/>'
+      + '</linearGradient></defs>'
+      + '<circle class="ring-bg" cx="70" cy="70" r="65"/>'
+      + '<circle class="ring-fg" cx="70" cy="70" r="65"/>'
+      + '</svg>'
+      + '<div class="circle-countdown-number">' + n + '</div>'
+      + '</div>'
+      + '<div class="countdown-sub">准备下一题...</div>'
+      + '</div>';
+  }
+
+  readyTxt.innerHTML = renderCircle(count);
+  // Trigger animation on next frame
+  requestAnimationFrame(function() {
+    var fg = readyTxt.querySelector('.ring-fg');
+    if (fg) fg.classList.add('animate');
+  });
+
+  var interval = setInterval(function() {
+    count--;
+    if (count <= 0) {
+      clearInterval(interval);
+      readyTxt.style.display = 'none';
+      onDone();
+    } else {
+      readyTxt.querySelector('.circle-countdown-number').textContent = count;
+    }
+  }, 1000);
+}
+
+function showCompletionPage(correct, total, elapsedSecs, finishTime) {
+  // Hide normal quiz UI
+  qContent.style.display = 'none';
+  readyTxt.style.display = 'none';
+  answerArea.style.display = 'none';
+  answerArea.innerHTML = '';
+  answerResult.textContent = '';
+  answerResult.className = 'answer-result';
+  card.classList.remove('highlight');
+  setMainBtnDisabled(true);
+
+  // Build time strings
+  var mins = Math.floor(elapsedSecs / 60);
+  var secs = elapsedSecs % 60;
+  var timeStr = mins > 0 ? (mins + '分' + secs + '秒') : (secs + '秒');
+  var isPerfect = correct === total;
+
+  // Create completion page inside qContent
+  var html = '<div class="completion-page">';
+  if (isPerfect) {
+    // All correct — victory screen
+    html += '<div class="trophy">🎮</div>';
+    html += '<div class="result-title">恭喜通关！</div>';
+    html += '<div class="result-subtitle">LEVEL MAX</div>';
+    html += '<div class="stat-row">';
+    html += '<div class="stat-item"><div class="stat-value perfect">' + timeStr + '</div><div class="stat-label">通关用时</div></div>';
+    html += '</div>';
+    html += '<div class="since-timer" id="sinceTimer">距完成已过：0秒</div>';
+    html += '<div class="claim-hint">请向工会工作人员展示此页面领取奖品</div>';
+  } else {
+    // Wrong answer — fail screen with stats + restart
+    var trophy = correct > 0 ? '😢' : '💪';
+    html += '<div class="trophy">' + trophy + '</div>';
+    html += '<div class="result-title">挑战失败</div>';
+    html += '<div class="stat-row">';
+    html += '<div class="stat-item"><div class="stat-value">' + correct + '/' + total + '</div><div class="stat-label">答对题数</div></div>';
+    html += '<div class="stat-item"><div class="stat-value">' + timeStr + '</div><div class="stat-label">用时</div></div>';
+    html += '</div>';
+    html += '<div class="since-timer" id="sinceTimer">距完成已过：0秒</div>';
+    if (correct > 0) {
+      html += '<div class="claim-hint">请向工会工作人员展示此页面领取奖品</div>';
+    }
+    html += '<button class="restart-btn" id="restartBtn">🔄 再次挑战</button>';
+  }
+  html += '</div>';
+
+  qContent.innerHTML = html;
+  qContent.style.display = 'block';
+
+  // Launch confetti for perfect score
+  if (isPerfect) {
+    launchConfetti();
+  }
+
+  // Start live timer
+  clearSinceTimer();
+  var sinceEl = document.getElementById('sinceTimer');
+  function updateSince() {
+    var diff = Math.floor((Date.now() - finishTime.getTime()) / 1000);
+    var sm = Math.floor(diff / 60), ss = diff % 60;
+    sinceEl.textContent = '距完成已过：' + (sm > 0 ? sm + '分' : '') + ss + '秒';
+  }
+  updateSince();
+  sinceTimerInterval = setInterval(updateSince, 1000);
+
+  // Restart button (only exists on fail screen)
+  var restartEl = document.getElementById('restartBtn');
+  if (restartEl) {
+    restartEl.onclick = function(e) {
+    e.stopPropagation();
+    clearSinceTimer();
+    clearConfetti();
+    resetId++;
+    resetRemaining();
+    correctCount = 0;
+    answeredCount = 0;
+    starsBar.querySelectorAll('.star').forEach(function(s) { s.classList.remove('lit'); });
+    startTime = null;
+    setMainBtnDisabled(false);
+
+    // Restore original qContent structure
+    qContent.innerHTML = '<div class="q-number" id="qNumber"></div>'
+      + '<div class="q-text" id="qText"></div>'
+      + '<div class="q-options" id="qOptions"></div>'
+      + '<div class="answer-area" id="answerArea" style="display:none;"></div>'
+      + '<div class="answer-result" id="answerResult"></div>';
+    qContent.style.display = 'none';
+
+    // Re-cache DOM references
+    qNumber = document.getElementById('qNumber');
+    qText = document.getElementById('qText');
+    qOptions = document.getElementById('qOptions');
+    answerArea = document.getElementById('answerArea');
+    answerResult = document.getElementById('answerResult');
+
+    readyTxt.style.display = 'block';
+    readyTxt.textContent = '点击开始抽题 🎯';
+    card.classList.remove('highlight');
+  };
   }
 }
 
